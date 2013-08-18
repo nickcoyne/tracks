@@ -5,3 +5,4 @@ public/images/simple_captcha
 public/paths
 public/share
 config/database.yml
+.rbenv-*
