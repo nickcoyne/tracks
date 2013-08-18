@@ -45,5 +45,5 @@ production:
   database: tracks_production
   pool: 5
   username: tracks
-  password: 
+  password:
   socket: /tmp/mysql.sock

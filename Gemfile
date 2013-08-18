@@ -8,6 +8,7 @@ gem "twitter"
 gem "hpricot"
 gem "highline"
 gem "airbrake", "3.1.6"
+gem "will_paginate", '2.3.16'
 
 group :development do
   gem "annotate", :git => "git://github.com/ctran/annotate_models.git"
