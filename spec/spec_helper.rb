@@ -1,5 +1,5 @@
-require 'rubygems'
-
+# This file is copied to ~/spec when you run 'ruby script/generate rspec'
+# from the project root directory.
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path(File.join(File.dirname(__FILE__),'..','config','environment'))
 require 'spec/autorun'
@@ -7,7 +7,6 @@ require 'spec/rails'
 
 require File.expand_path(File.dirname(__FILE__) + "/factories")
 require File.expand_path(File.dirname(__FILE__) + "/default_helper")
-
 
 # Uncomment the next line to use webrat's matchers
 #require 'webrat/integrations/rspec-rails'
@@ -24,14 +23,9 @@ Spec::Runner.configure do |config|
   config.use_instantiated_fixtures  = false
   config.fixture_path = RAILS_ROOT + '/spec/fixtures/'
 
-  [EmailSpec::Helpers, DefaultHelper].each do |i|
+  [ DefaultHelper ].each do |i|
     config.include i
   end
-
-  # config.before(:each) do
-  #   Rails.cache.clear
-  # end
-
   # == Fixtures
   #
   # You can declare fixtures for each example_group like this:
@@ -53,7 +47,7 @@ Spec::Runner.configure do |config|
   #
   # == Mock Framework
   #
-  # RSpec uses it's own mocking framework by default. If you prefer to
+  # RSpec uses its own mocking framework by default. If you prefer to
   # use mocha, flexmock or RR, uncomment the appropriate line:
   #
   # config.mock_with :mocha
@@ -63,13 +57,4 @@ Spec::Runner.configure do |config|
   # == Notes
   #
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
-end
-
-##### CUSTOM MATCHERS #####
-
-def irb_shell
-  require 'irb'
-  require 'irb/completion'
-  ARGV.clear
-  IRB.start
 end

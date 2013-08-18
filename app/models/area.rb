@@ -45,7 +45,7 @@ class Area < ActiveRecord::Base
     summary.sort_by {|a| a[1]}.reverse
   end
 
-  protected
+protected
 
   # Shoe-horn twitter message (some of), and area url
   def format_for_twitter(message)
@@ -54,6 +54,6 @@ class Area < ActiveRecord::Base
   end
 
   def fix_name
-    fix_stupid_quotes!(name)
+    fix_stupid_quotes!(name) if name
   end
 end

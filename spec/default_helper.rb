@@ -1,53 +1,37 @@
 module DefaultHelper
 
-  def not_logged_in
-    logout_user
-  end
-
   def login_user
-    if @current_user.nil?
-      @current_user = prepare_user
-    end
-    session[:current] = 'this_session_id'
-    controller.stub(:current_user).and_return(@current_user)
+    @current_user = prepare_user if @current_user.nil?
+    session[:user] = 'this_session_id'
+    controller.stub!(:current_user).and_return(@current_user)
   end
 
-  def login_admin
-    login_user
-    @current_user.has_role! :admin
-    @current_user.stub(:roles).and_return(@current_user.role_objects)
-    return @current_user
-  end
+  # def login_admin
+  #   login_user
+  #   return @current_user
+  # end
 
-  def login_client
-    login_user
-    @current_user.has_role! :client
-    @current_user.stub(:roles).and_return(@current_user.role_objects)
-    return @current_user
-  end
-
-  def logout_user
-    @current_user = nil
-    @current_user.stub(:current_session).and_return(nil )
-    controller.stub(:current_user).and_return(nil)
-    controller.stub(:logged_in?).and_return(false)
-  end
+  # def logout_user
+  #   @current_user = nil
+  #   @current_user.stub!(:current_session).and_return(nil )
+  #   controller.stub!(:current_user).and_return(nil)
+  #   controller.stub!(:logged_in?).and_return(false)
+  # end
 
   def prepare_user
     user = Factory.build(:user)
-    user.stub(:current_session).and_return('this_session_id')
-    user.stub(:forget_me).and_return(false)
-    user.stub(:roles).and_return([])
+    user.stub!(:current_session).and_return('this_session_id')
+    user.stub!(:forget_me).and_return(false)
     user
   end
 
-  def validate_with(attributes)
-    ValidateWith.new(attributes)
-  end
+  # def validate_with(attributes)
+  #   ValidateWith.new(attributes)
+  # end
 
-  def use_layout(expected)
-    UseLayout.new(expected)
-  end
+  # def use_layout(expected)
+  #   UseLayout.new(expected)
+  # end
 
 end
 
