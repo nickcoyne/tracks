@@ -39,8 +39,10 @@ GEM
       net-ssh-gateway (>= 1.1.0)
     capistrano-ext (1.2.1)
       capistrano (>= 1.0.0)
+    coderay (1.0.9)
     columnize (0.3.6)
     connection_pool (1.1.0)
+    factory_girl (1.3.3)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     girl_friday (0.11.2)
@@ -51,6 +53,7 @@ GEM
     json (1.8.0)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
+    method_source (0.8.2)
     multi_json (1.7.9)
     multipart-post (1.2.0)
     mysql2 (0.3.11)
@@ -61,6 +64,13 @@ GEM
     net-ssh (2.6.8)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
+    pry (0.9.12.2)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pry-remote (0.1.7)
+      pry (~> 0.9)
+      slop (~> 3.0)
     rack (1.1.6)
     rails (2.3.18)
       actionmailer (= 2.3.18)
@@ -72,6 +82,10 @@ GEM
     rake (10.1.0)
     rdoc (4.0.1)
       json (~> 1.4)
+    rspec (1.3.2)
+    rspec-rails (1.3.4)
+      rack (>= 1.0.0)
+      rspec (~> 1.3.1)
     rubinius-actor (0.0.2)
       rubinius-core-api
     rubinius-core-api (0.0.1)
@@ -86,10 +100,12 @@ GEM
     ruby_core_source (0.1.5)
       archive-tar-minitar (>= 0.5.2)
     simple_oauth (0.2.0)
+    slop (3.4.6)
     twitter (4.8.1)
       faraday (~> 0.8, < 0.10)
       multi_json (~> 1.0)
       simple_oauth (~> 0.2)
+    will_paginate (2.3.16)
 
 PLATFORMS
   ruby
@@ -100,6 +116,7 @@ DEPENDENCIES
   annotate!
   capistrano
   capistrano-ext
+  factory_girl (~> 1.3.2)
   highline
   hpricot
   mysql2 (= 0.3.11)
@@ -107,8 +124,13 @@ DEPENDENCIES
   net-sftp
   net-ssh
   net-ssh-gateway
+  pry
+  pry-remote
   rails (= 2.3.18)
   rdoc
+  rspec (~> 1.3.1)
+  rspec-rails (~> 1.3.3)
   ruby-debug19
   shorturl (= 0.8.8)!
   twitter
+  will_paginate (= 2.3.16)

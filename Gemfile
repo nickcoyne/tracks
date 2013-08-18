@@ -28,5 +28,4 @@ group :test do
   gem "factory_girl", '~> 1.3.2'
   gem "rspec", '~> 1.3.1', :require => false
   gem "rspec-rails", '~> 1.3.3', :require => false
-  gem "rcov", '~> 1.0.0'
 end
