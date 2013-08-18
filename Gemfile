@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 # bundler requires these gems in all environments
 gem "rails", "2.3.18"
