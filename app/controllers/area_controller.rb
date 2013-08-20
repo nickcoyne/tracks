@@ -3,7 +3,7 @@ class AreaController < ApplicationController
   before_filter :login_required, :only => [ :edit, :update, :new ]
 
   def index
-    redirect_to :action => 'show', :id => Area.find(:first)
+    redirect_to :action => 'show', :id => Area.first
   end
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)

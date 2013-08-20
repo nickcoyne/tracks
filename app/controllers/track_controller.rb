@@ -3,16 +3,16 @@ class TrackController < ApplicationController
   before_filter :login_required, :only => [ :edit, :update, :new ]
 
   def index
-    redirect_to :action => 'show', :id => Track.find(:first)
+    redirect_to :action => 'show', :id => Track.first
   end
-  
+
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
   :redirect_to => { :action => :index }
 
   def show
     @track = Track.find(params[:id])
-    @track_akas = TrackAka.find(:all, :conditions => ["track_id = ?", @track.id])
+    @track_akas = TrackAka.all(:conditions => ["track_id = ?", @track.id])
     @existing_connections = @track.get_connections
     @ref_id = @track.id
   end
@@ -88,7 +88,7 @@ class TrackController < ApplicationController
     end
     redirect_to :action => 'show', :id => @track.id
   end
-  
+
   def print
     show
     render(:layout => "layouts/print")

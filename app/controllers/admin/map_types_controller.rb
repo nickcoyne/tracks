@@ -6,7 +6,7 @@ class Admin::MapTypesController < ApplicationController
   before_filter :set_title
 
   def index
-    @map_types = MapType.find(:all)
+    @map_types = MapType.all
   end
 
   def show

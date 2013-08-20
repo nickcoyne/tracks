@@ -3,7 +3,7 @@ class NationController < ApplicationController
   before_filter :login_required, :only => [ :edit, :update, :edit_regions, :region_up, :region_down ]
 
   def index
-    redirect_to :action => 'show', :id => Nation.find(:first)
+    redirect_to :action => 'show', :id => Nation.first
   end
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)

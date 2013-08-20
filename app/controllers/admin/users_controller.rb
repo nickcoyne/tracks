@@ -31,7 +31,7 @@ class Admin::UsersController < ApplicationController
 
   def show_signups
     @users = User.paginate :page => params[:page], :order => 'created_at DESC'
-    @signups = User.find(:all, :conditions => ['created_at > ?', 1.year.ago], :order => 'created_at DESC')
+    @signups = User.all(:conditions => ['created_at > ?', 1.year.ago], :order => 'created_at DESC')
     @signup_months = @signups.group_by { |t| t.created_at.beginning_of_month }
   end
 

@@ -8,7 +8,7 @@
 <% if params[:action] == 'new' %>
   <%= text_field 'area', 'region_id', :value => @area.region.name, :disabled => true %>
 <% else %>
-  <%= select 'area', 'region_id', Region.find(:all).collect {|c| [c.name, c.id] } %>
+  <%= select 'area', 'region_id', Region.all.collect {|c| [c.name, c.id] } %>
 <% end %>
 </p>
 

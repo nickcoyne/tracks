@@ -32,7 +32,7 @@ class Area < ActiveRecord::Base
 
 
   def self.get_markers(region_id)
-    find(:all, :conditions => ["region_id = ? AND zoom != 0", region_id], :select => 'latitude, longitude, name, id').collect { |a| [a.latitude, a.longitude, a.name, a.id] }
+    Area.all(:conditions => ["region_id = ? AND zoom != 0", region_id], :select => 'latitude, longitude, name, id').collect { |a| [a.latitude, a.longitude, a.name, a.id] }
   end
 
   def tweet_new

@@ -7,7 +7,7 @@
 <% if params[:action] == 'new' %>
   <%= text_field 'track', 'nation_id', :value => @region.nation.name, :disabled => true %>
 <% else %>
-  <%= select 'region', 'nation_id', Nation.find(:all).collect {|c| [c.name, c.id] } %>
+  <%= select 'region', 'nation_id', Nation.all.collect {|c| [c.name, c.id] } %>
 <% end %>
 </p>
 

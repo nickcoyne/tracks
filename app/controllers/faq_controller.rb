@@ -15,7 +15,7 @@ class FaqController < ApplicationController
   :redirect_to => { :action => :index }
 
   def list
-    @faqs = Faq.find(:all, :order => "category, question ASC")
+    @faqs = Faq.all(:order => "category, question ASC")
   end
 
   def show
@@ -24,7 +24,7 @@ class FaqController < ApplicationController
 
   def new
     @faq = Faq.new
-    @categories = Faq.find(:all, :select => 'category', :group => 'category')
+    @categories = Faq.all(:select => 'category', :group => 'category')
   end
 
   def create
@@ -42,7 +42,7 @@ class FaqController < ApplicationController
   def edit
     @faq = Faq.find(params[:id])
     @faq.answer = replace_for_edit(@faq.answer)
-    @categories = Faq.find(:all, :select => 'category', :group => 'category')
+    @categories = Faq.all(:select => 'category', :group => 'category')
   end
 
   def update
@@ -62,7 +62,7 @@ class FaqController < ApplicationController
     update_user_edit_stats
     redirect_to :action => 'index'
   end
-  
+
   def set_title
     @title = 'FAQ'
   end
