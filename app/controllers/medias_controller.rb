@@ -2,7 +2,7 @@ class MediasController < ApplicationController
   # GET /medias
   # GET /medias.xml
   def index
-    @medias = Media.find(:all)
+    @medias = Media.all
 
     respond_to do |format|
       format.html # index.html.erb

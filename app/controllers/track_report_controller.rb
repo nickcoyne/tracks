@@ -15,8 +15,8 @@ class TrackReportController < ApplicationController
   end
 
   def list
-    @track_reports = TrackReport.find(:all, :order => 'updated_at DESC', :conditions => ["track_id = ? and updated_at > ? and updated_at < ?", params[:track_id], params[:year] + '-01-01 00:00:00', params[:year] + '-12-31 23:59:59'])
-    @oldest_report = TrackReport.find(:first, :conditions => ['track_id = ?', params[:track_id]], :order => 'updated_at ASC')
+    @track_reports = TrackReport.all(:order => 'updated_at DESC', :conditions => ["track_id = ? and updated_at > ? and updated_at < ?", params[:track_id], params[:year] + '-01-01 00:00:00', params[:year] + '-12-31 23:59:59'])
+    @oldest_report = TrackReport.first(:conditions => ['track_id = ?', params[:track_id]], :order => 'updated_at ASC')
   end
 
   def new

@@ -6,7 +6,7 @@ class PolicyController < ApplicationController
   before_filter :set_title
 
   def index
-    @special = Special.find(:first, :conditions => ["name = ?", 'policy'])
+    @special = Special.first(:conditions => ["name = ?", 'policy'])
   end
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)

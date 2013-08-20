@@ -6,7 +6,7 @@ class AboutController < ApplicationController
   before_filter :set_title
 
   def index
-    @special = Special.find(:first, :conditions => ["name = ?", 'about'])
+    @special = Special.first(:conditions => ["name = ?", 'about'])
   end
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
