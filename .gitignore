@@ -6,3 +6,4 @@ public/paths
 public/share
 config/database.yml
 .rbenv-*
+coverage/*

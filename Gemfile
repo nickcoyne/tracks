@@ -18,6 +18,9 @@ gem 'gvis', '< 2.0.0'
 gem "twitter"
 gem "airbrake", "3.1.6"
 
+# CI
+gem 'coveralls', require: false
+
 group :development do
   gem "annotate", :git => "git://github.com/ctran/annotate_models.git"
   gem "ruby-debug19"
