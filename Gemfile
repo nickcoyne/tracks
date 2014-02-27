@@ -23,7 +23,7 @@ gem 'coveralls', require: false
 
 group :development do
   gem "annotate", git: "git://github.com/ctran/annotate_models.git"
-  gem "ruby-debug19"
+  # gem "ruby-debug19"
   gem "capistrano", require: false
     gem "capistrano-ext", require: false
     gem "net-ssh"
