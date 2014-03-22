@@ -14,6 +14,7 @@ describe AreaController do
     it 'assigns area for the view' do
       assigns(:area).should == @area
     end
+
     it { should render_template(:show) }
   end
 

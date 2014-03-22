@@ -1,6 +1,6 @@
 class TrackController < ApplicationController
 
-  before_filter :login_required, :only => [ :edit, :update, :new ]
+  before_filter :login_required, :only => [ :edit, :update, :new, :create ]
 
   def index
     redirect_to :action => 'show', :id => Track.first

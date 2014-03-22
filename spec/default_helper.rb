@@ -11,18 +11,17 @@ module DefaultHelper
   #   return @current_user
   # end
 
-  # def logout_user
-  #   @current_user = nil
-  #   @current_user.stub!(:current_session).and_return(nil )
-  #   controller.stub!(:current_user).and_return(nil)
-  #   controller.stub!(:logged_in?).and_return(false)
-  # end
-
   def prepare_user
     user = Factory.build(:user)
     user.stub!(:current_session).and_return('this_session_id')
     user.stub!(:forget_me).and_return(false)
     user
+  end
+
+  def logout_user
+    @current_user = nil
+    controller.stub(:current_user).and_return(nil)
+    controller.stub(:logged_in?).and_return(false)
   end
 
   # def validate_with(attributes)

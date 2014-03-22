@@ -1,9 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :medias
-
-  map.resources :votes
 
   map.resources :features
+  map.resources :medias
+  map.resources :votes
 
   # map.resources :map_types
 

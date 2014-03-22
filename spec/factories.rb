@@ -23,7 +23,7 @@ Factory.define :track do |f|
 end
 
 Factory.define :user do |f|
-  f.screen_name { Factory.next(:screen_nam) }
+  f.sequence(:screen_name) { |n| "User#{n}" }
   f.login "Smith"
   f.password "qwerty"
 end

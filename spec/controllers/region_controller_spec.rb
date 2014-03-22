@@ -14,6 +14,7 @@ describe RegionController do
     it 'assigns region for the view' do
       assigns(:region).should == @region
     end
+
     it { should render_template(:show) }
   end
 
