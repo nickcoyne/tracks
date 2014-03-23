@@ -1,11 +1,3 @@
-GIT
-  remote: git://github.com/ctran/annotate_models.git
-  revision: ed327d5a15226d0b5f78ab1d47649c0fdab66c8f
-  specs:
-    annotate (2.6.2)
-      activerecord (>= 2.3.0)
-      rake (>= 0.8.7)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -137,7 +129,6 @@ PLATFORMS
 DEPENDENCIES
   activerecord-mysql2-adapter (= 0.0.3)
   airbrake (= 3.1.6)
-  annotate!
   capistrano
   capistrano-ext
   coveralls

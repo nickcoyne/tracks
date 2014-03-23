@@ -1,16 +1,3 @@
-# == Schema Information
-# Schema version: 20090930170613
-#
-# Table name: track_reports
-#
-#  id          :integer(4)      not null, primary key
-#  track_id    :integer(4)
-#  user_id     :integer(4)
-#  description :text
-#  created_at  :datetime
-#  updated_at  :datetime
-#
-
 class TrackReport < ActiveRecord::Base
 
   include TwitterHelper
