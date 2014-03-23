@@ -2,7 +2,7 @@
 <div class="right">
   <% if @comments.length > 0 %>
     <% @comments.each do |feature_comment| %>
-      <%= render :partial => 'feature_comments/show', :locals => {:feature_comment => feature_comment} %>
+      <%= render partial: 'feature_comments/show', locals: {feature_comment: feature_comment} %>
     <% end %>
   <% else %>
     <p>None<span id="delete_link"></span></p>

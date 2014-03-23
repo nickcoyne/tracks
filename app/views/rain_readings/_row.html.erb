@@ -1,7 +1,7 @@
 <td class="c1">
 <% if @rain_reading.mm >= 0 %>
   <% if admin? %>
-    <%= link_to_remote @rain_reading.mm, {:url => {:controller => 'rain_readings', :action => 'edit', :id => @rain_reading.id}, :method => :get} %>
+    <%= link_to_remote @rain_reading.mm, {url: {controller: 'rain_readings', action: 'edit', id: @rain_reading.id}, method: :get} %>
   <% else %>
     <%= @rain_reading.mm %>
   <% end %>
@@ -17,7 +17,7 @@
   </td>
   <td>
   <% if admin? %>
-    <%= link_to_remote '(data&nbsp;not&nbsp;available)', {:url => {:controller => 'rain_readings', :action => 'edit', :id => @rain_reading.id}, :method => :get} %>
+    <%= link_to_remote '(data&nbsp;not&nbsp;available)', {url: {controller: 'rain_readings', action: 'edit', id: @rain_reading.id}, method: :get} %>
   <% else %>
     (data&nbsp;not&nbsp;available)
   <% end %>

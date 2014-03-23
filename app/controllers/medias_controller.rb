@@ -6,7 +6,7 @@ class MediasController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @medias }
+      format.xml  { render xml: @medias }
     end
   end
 
@@ -17,7 +17,7 @@ class MediasController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @media }
+      format.xml  { render xml: @media }
     end
   end
 
@@ -28,7 +28,7 @@ class MediasController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @media }
+      format.xml  { render xml: @media }
     end
   end
 
@@ -46,10 +46,10 @@ class MediasController < ApplicationController
       if @media.save
         flash[:notice] = 'Media was successfully created.'
         format.html { redirect_to(@media) }
-        format.xml  { render :xml => @media, :status => :created, :location => @media }
+        format.xml  { render xml: @media, status: :created, location: @media }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @media.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
+        format.xml  { render xml: @media.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -65,8 +65,8 @@ class MediasController < ApplicationController
         format.html { redirect_to(@media) }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @media.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.xml  { render xml: @media.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -102,9 +102,9 @@ class MediasController < ApplicationController
     @ref_type = @media.ref_type
     @ref_id = @media.ref_id
     if @media.save
-      # redirect_to :controller => params[:ref_type], :action => :show, :id => params[:ref_id]
+      # redirect_to controller: params[:ref_type], action: :show, id: params[:ref_id]
     # else
-      # format.html { render :action => "new" }
+      # format.html { render action: "new" }
     end
   end
 end

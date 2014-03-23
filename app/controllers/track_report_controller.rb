@@ -2,21 +2,21 @@ class TrackReportController < ApplicationController
 
   layout 'shared'
 
-  before_filter :login_required, :only => [ :edit, :update, :new, :login ]
+  before_filter :login_required, only: [ :edit, :update, :new, :login ]
   before_filter :set_title
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
+  verify method: :post, only: [ :destroy, :create, :update ],
+         redirect_to: { action: :list }
 
   def index
    list
-   render :action => 'list'
+   render action: 'list'
   end
 
   def list
-    @track_reports = TrackReport.all(:order => 'updated_at DESC', :conditions => ["track_id = ? and updated_at > ? and updated_at < ?", params[:track_id], params[:year] + '-01-01 00:00:00', params[:year] + '-12-31 23:59:59'])
-    @oldest_report = TrackReport.first(:conditions => ['track_id = ?', params[:track_id]], :order => 'updated_at ASC')
+    @track_reports = TrackReport.all(order: 'updated_at DESC', conditions: ["track_id = ? and updated_at > ? and updated_at < ?", params[:track_id], params[:year] + '-01-01 00:00:00', params[:year] + '-12-31 23:59:59'])
+    @oldest_report = TrackReport.first(conditions: ['track_id = ?', params[:track_id]], order: 'updated_at ASC')
   end
 
   def new
@@ -25,7 +25,7 @@ class TrackReportController < ApplicationController
   end
 
   def login
-    redirect_to :controller => 'track', :action => 'show', :id => params[:track_id]
+    redirect_to controller: 'track', action: 'show', id: params[:track_id]
   end
 
   def create
@@ -40,7 +40,7 @@ class TrackReportController < ApplicationController
       @new_track_id = @track_report.id # my rjs doesn't get the proper id...
       @track = Track.find(params[:track_id])
     else
-      redirect_to :action => 'cancel', :track_id => params[:track_id]
+      redirect_to action: 'cancel', track_id: params[:track_id]
     end
   end
 

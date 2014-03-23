@@ -8,7 +8,7 @@ class Admin::UsersController < ApplicationController
   def index
     @filter = params[:filter].nil? ? 'all' : params[:filter]
     s = @filter == 'all' ? %w(viewer creator admin) : @filter == 'creator' ? %w(creator admin) : @filter
-    @users = User.paginate :page => params[:page], :conditions => ['privilege in (?)', [s]], :order => 'last_track_edit_at DESC, created_at DESC'
+    @users = User.paginate page: params[:page], conditions: ['privilege in (?)', [s]], order: 'last_track_edit_at DESC, created_at DESC'
   end
 
   def show
@@ -23,15 +23,15 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:notice] = @user.screen_name + ' was successfully updated.'
-      redirect_to :action => 'show', :id => @user
+      redirect_to action: 'show', id: @user
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
   def show_signups
-    @users = User.paginate :page => params[:page], :order => 'created_at DESC'
-    @signups = User.all(:conditions => ['created_at > ?', 1.year.ago], :order => 'created_at DESC')
+    @users = User.paginate page: params[:page], order: 'created_at DESC'
+    @signups = User.all(conditions: ['created_at > ?', 1.year.ago], order: 'created_at DESC')
     @signup_months = @signups.group_by { |t| t.created_at.beginning_of_month }
   end
 
@@ -44,9 +44,9 @@ class Admin::UsersController < ApplicationController
     params[:user][:password_confirmation] = params[:user][:password]
     if @user.update_attributes(params[:user])
       flash[:notice] = @user.screen_name + ' password set.'
-      redirect_to :action => 'show', :id => @user
+      redirect_to action: 'show', id: @user
     else
-      render :action => 'edit_password'
+      render action: 'edit_password'
     end
   end
 

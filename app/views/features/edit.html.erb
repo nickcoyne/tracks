@@ -1,7 +1,7 @@
 <h1><%= @feature.kind.humanize %> (edit)</h1>
 
 <% form_for(@feature) do |f| %>
-  <%= error_messages_for 'feature', :header_tag => 'h4' %>
+  <%= error_messages_for 'feature', header_tag: 'h4' %>
 
   <% if admin? || @feature.user == current_user %>
     <div class="left"><p><%= f.label :kind %></p></div>

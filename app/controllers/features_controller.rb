@@ -2,7 +2,7 @@ class FeaturesController < ApplicationController
 
   layout 'shared'
 
-  before_filter :login_required, :only => [ :new, :edit, :update ]
+  before_filter :login_required, only: [ :new, :edit, :update ]
   before_filter :set_title
 
   # GET /features
@@ -18,7 +18,7 @@ class FeaturesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @features }
+      format.xml  { render xml: @features }
     end
   end
 
@@ -30,7 +30,7 @@ class FeaturesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @feature }
+      format.xml  { render xml: @feature }
     end
   end
 
@@ -42,7 +42,7 @@ class FeaturesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @feature }
+      format.xml  { render xml: @feature }
     end
   end
 
@@ -65,10 +65,10 @@ class FeaturesController < ApplicationController
       if @feature.save
         flash[:notice] = 'Feature was successfully created.'
         format.html { update_user_edit_stats; redirect_to(@feature) }
-        format.xml  { render :xml => @feature, :status => :created, :location => @feature }
+        format.xml  { render xml: @feature, status: :created, location: @feature }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @feature.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
+        format.xml  { render xml: @feature.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -88,8 +88,8 @@ class FeaturesController < ApplicationController
         format.html { update_user_edit_stats; redirect_to(@feature) }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @feature.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.xml  { render xml: @feature.errors, status: :unprocessable_entity }
       end
     end
   end

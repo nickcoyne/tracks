@@ -7,7 +7,7 @@ class SettingsController < ApplicationController
 
   def index
     show
-    render :action => 'show'
+    render action: 'show'
   end
 
   def show
@@ -20,7 +20,7 @@ class SettingsController < ApplicationController
   def edit_prefs
     @setting = Setting.find(current_user.id)
   end
-  
+
   def cancel_edit_prefs
     @setting = Setting.find(current_user.id)
   end
@@ -29,7 +29,7 @@ class SettingsController < ApplicationController
     @setting = Setting.find(current_user.id)
 
     if !@setting.update_attributes(params[:setting])
-      render :action => 'edit_prefs'
+      render action: 'edit_prefs'
     end
   end
 
@@ -38,7 +38,7 @@ class SettingsController < ApplicationController
   def edit_user_settings
     @user = User.find(current_user.id)
   end
-  
+
   def cancel_edit_user_settings
     @user = User.find(current_user.id)
   end
@@ -50,7 +50,7 @@ class SettingsController < ApplicationController
     @user.screen_name = params[:user][:screen_name]
 
     if !@user.save
-      render :action => 'edit_user_settings'
+      render action: 'edit_user_settings'
     else
       current_user = @user
     end

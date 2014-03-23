@@ -1,1 +1,1 @@
-page.replace_html('user_settings', :partial => 'show_user_settings')
+page.replace_html('user_settings', partial: 'show_user_settings')

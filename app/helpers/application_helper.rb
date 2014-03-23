@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   def user_map_style
-    logged_in? ? current_user.setting.map_type.google_map_type : MapType.find(:first, :conditions => ['name = ?', 'Satellite']).google_map_type
+    logged_in? ? current_user.setting.map_type.google_map_type : MapType.find(:first, conditions: ['name = ?', 'Satellite']).google_map_type
   end
 
   # TODO allow for user-selectable units

@@ -60,7 +60,7 @@ describe RegionController do
   describe "POST #create" do
     before do
       @valid_attributes = Factory.attributes_for(:region)
-      @invalid_attributes = Factory.attributes_for(:region, :name => '')
+      @invalid_attributes = Factory.attributes_for(:region, name: '')
       login_user
       Region.stub(:new).and_return(@region)
       Region.stub(:find).and_return(@region)
@@ -90,13 +90,13 @@ describe RegionController do
 
   describe "GET #edit" do
     before do
-      @region = Factory.build(:region, :id => '1')
+      @region = Factory.build(:region, id: '1')
       Region.stub(:find).and_return(@region)
       login_user
     end
 
     def do_get
-      get :edit, :id => "1"
+      get :edit, id: "1"
     end
 
     it "is successful" do
@@ -122,7 +122,7 @@ describe RegionController do
 
   describe  "PUT #update" do
     before do
-      @region = Factory.build(:region, :id => '1', :description => '')
+      @region = Factory.build(:region, id: '1', description: '')
       @region.stub(:encode_region_area).and_return(true)
       Region.stub(:find).and_return(@region)
       login_user
@@ -131,12 +131,12 @@ describe RegionController do
 
     def put_with_successful_update
       @region.stub(:update_attributes).and_return(true)
-      post :update, :id => '1', :region => { :description => '' }
+      post :update, id: '1', :region => { description: '' }
     end
 
     def put_with_failed_update
       @region.stub(:update_attributes).and_return(false)
-      post :update, :id => '1', :region => { :description => '' }
+      post :update, id: '1', :region => { description: '' }
     end
 
     it "finds the region requested" do

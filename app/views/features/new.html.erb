@@ -1,9 +1,9 @@
 <h1>New <%= @feature.kind.humanize %></h1>
 
-<p>You can browse existing <%= @feature.kind %>s <%= link_to 'here', :controller => 'features' %>.</p>
+<p>You can browse existing <%= @feature.kind %>s <%= link_to 'here', controller: 'features' %>.</p>
 
 <% form_for(@feature) do |f| %>
-  <%= error_messages_for 'feature', :header_tag => 'h4' %>
+  <%= error_messages_for 'feature', header_tag: 'h4' %>
 
   <%= f.hidden_field :kind %>
 
@@ -14,6 +14,6 @@
   <div class="right"><p><%= f.text_area :description %></p></div>
 
   <p class="edit">
-    <%= f.submit "Create", :kind => @feature.kind %> or <%= link_to 'Cancel', features_path %>
+    <%= f.submit "Create", kind: @feature.kind %> or <%= link_to 'Cancel', features_path %>
   </p>
 <% end %>

@@ -1,18 +1,18 @@
 class IndexController < ApplicationController
 
-  before_filter :login_required, :only => [ :edit, :update ]
-  layout 'index', :except => [:rss]
+  before_filter :login_required, only: [ :edit, :update ]
+  layout 'index', except: [:rss]
 
   def index
-    @special = Special.find(:first, :conditions => ["name = ?", 'index'])
+    @special = Special.find(:first, conditions: ["name = ?", 'index'])
     @recent_track_reports = TrackReport.find_recent[0,10]
     set_nation
-    @regions_with_points = Region.all(:conditions => ["nation_id = ? AND points IS NOT NULL AND points != ?", @nation.id, ""])
+    @regions_with_points = Region.all(conditions: ["nation_id = ? AND points IS NOT NULL AND points != ?", @nation.id, ""])
   end
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :index }
+  verify method: :post, only: [ :destroy, :create, :update ],
+         redirect_to: { action: :index }
 
   def edit
     @special = Special.find(params[:id])
@@ -26,9 +26,9 @@ class IndexController < ApplicationController
     if @special.update_attributes(params[:special])
       update_user_edit_stats
       flash[:notice] = 'Home was successfully updated.'
-      redirect_to :action => 'index'
+      redirect_to action: 'index'
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 

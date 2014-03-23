@@ -1,1 +1,1 @@
-page.replace_html('preferences', :partial => 'edit_prefs')
+page.replace_html('preferences', partial: 'edit_prefs')

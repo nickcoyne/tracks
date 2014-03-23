@@ -5,20 +5,20 @@ class Region < ActiveRecord::Base
   include TwitterHelper
   include TextHelper
 
-  has_many :areas, :order => 'name'
-  has_many :tracks, :through => :areas
+  has_many :areas, order: 'name'
+  has_many :tracks, through: :areas
   belongs_to :nation
   has_many :settings
 
   before_validation       :fix_name
 
   validates_presence_of     :name
-  validates_format_of       :name, :with => /^[\w ]+$/i, :message => 'can only contain letters and numbers (and spaces).'
-  validates_length_of       :name, :maximum => 30, :message => 'Region name too long, maximum is 30 characters.'
+  validates_format_of       :name, with: /^[\w ]+$/i, message: 'can only contain letters and numbers (and spaces).'
+  validates_length_of       :name, maximum: 30, message: 'Region name too long, maximum is 30 characters.'
   validates_uniqueness_of   :name
   validates_presence_of     :description
   validates_presence_of     :rain_readings
-  validates_inclusion_of    :rain_readings, :in => 0..21, :message => 'must be in the range 0-21 (inclusive).'
+  validates_inclusion_of    :rain_readings, :in => 0..21, message: 'must be in the range 0-21 (inclusive).'
 
   # COLOURS = ['#ff0000','#00ff00','#0000ff','#ffff00','#ff00ff','#00ffff']
   COLOURS = ['#fd5f5f','#24b4ff','#c0ff00','#ffc600']

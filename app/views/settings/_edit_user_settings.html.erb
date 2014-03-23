@@ -2,9 +2,9 @@
 
 <%= heading "Account (edit)" %>
 
-<%= error_messages_for 'user', :header_tag => 'h4' %>
+<%= error_messages_for 'user', header_tag: 'h4' %>
 
-<% form_remote_tag :url => {:action => "update_user_settings"} do %>
+<% form_remote_tag url: {action: "update_user_settings"} do %>
 
 <div class="two_cols">
 
@@ -16,6 +16,6 @@
 
 </div>
 
-<p class="form_buttons"><%= submit_tag 'Save preferences' %> or <%= link_to_remote 'Cancel', :url => {:action => 'cancel_edit_user_settings'} %></p>
+<p class="form_buttons"><%= submit_tag 'Save preferences' %> or <%= link_to_remote 'Cancel', url: {action: 'cancel_edit_user_settings'} %></p>
 
 <% end %>

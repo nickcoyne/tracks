@@ -7,7 +7,7 @@ class AccountController < ApplicationController
 
   # say something nice, you goof!  something sweet.
   def index
-    redirect_to(:action => 'signup') unless logged_in? || User.count > 0
+    redirect_to(action: 'signup') unless logged_in? || User.count > 0
   end
 
   def login
@@ -16,9 +16,9 @@ class AccountController < ApplicationController
     if logged_in?
       if params[:remember_me] == "1"
         self.current_user.remember_me
-        cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
+        cookies[:auth_token] = { value: self.current_user.remember_token , expires: self.current_user.remember_token_expires_at }
       end
-      redirect_back_or_default(:controller => '/index', :action => 'index')
+      redirect_back_or_default(controller: '/index', action: 'index')
     else
       flash[:notice] = "Problem with log in, re-enter your username and password"
     end
@@ -30,20 +30,20 @@ class AccountController < ApplicationController
     if @user.save!
       self.current_user = @user
       flash[:notice] = "Thanks for signing up!"
-      redirect_back_or_default(:controller => '/index', :action => 'index')
+      redirect_back_or_default(controller: '/index', action: 'index')
     else
       return
     end
   rescue ActiveRecord::RecordInvalid
-    render :action => 'signup'
+    render action: 'signup'
   end
-  
+
   def logout
     self.current_user.forget_me if logged_in?
     cookies.delete :auth_token
     reset_session
     flash[:notice] = "You have been logged out."
-    redirect_back_or_default(:controller => '/index', :action => 'index')
+    redirect_back_or_default(controller: '/index', action: 'index')
   end
 
   def change_password
@@ -56,7 +56,7 @@ class AccountController < ApplicationController
         if (params[:user][:password].empty?)
           flash[:notice] = "New password can't be empty"
           @old_password = params[:user][:old_password]
-          render :action => 'change_password'
+          render action: 'change_password'
         else
           current_user.password_confirmation = params[:user][:password_confirmation]
           current_user.password = params[:user][:password]
@@ -68,11 +68,11 @@ class AccountController < ApplicationController
       else
         flash[:notice] = "Password mismatch"
         @old_password = params[:user][:old_password]
-        render :action => 'change_password'
+        render action: 'change_password'
       end
     else
       flash[:notice] = "Old password wrong"
-      render :action => 'change_password'
+      render action: 'change_password'
     end
   end
 

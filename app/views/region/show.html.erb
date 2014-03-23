@@ -8,9 +8,9 @@
 <div id="map"></div><p><input type="button" value="Reset map view" onclick="resetMap();"/><% if !@region.points.nil? %>&nbsp;<input type="button" value="Show/hide region" onclick="showHideRegion();"/><% end %></p>
 <% end %>
 
-<%= render :partial => 'track_report/summary', :locals => {:title => 'Recent Track Reports'} %>
+<%= render partial: 'track_report/summary', locals: {title: 'Recent Track Reports'} %>
 
-<%= render :partial => 'tracks_summary' %>
+<%= render partial: 'tracks_summary' %>
 
 <%= heading "Stay connected" %>
 <p>
@@ -19,8 +19,8 @@
 
 <hr/>
 
-<p class="edit"><%= link_to 'Edit', :action => 'edit', :id => @region %>
+<p class="edit"><%= link_to 'Edit', action: 'edit', id: @region %>
 <% if creator? %>
- | <%= link_to 'Add area', :controller => 'area', :action => 'new', :region_id => @region.id %>
+ | <%= link_to 'Add area', controller: 'area', action: 'new', region_id: @region.id %>
 <% end %>
 <% if ! logged_in? %> (requires sign-in)<% end %></p>

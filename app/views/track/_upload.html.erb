@@ -1,10 +1,10 @@
 <div class='sub_form'>
-<%= form_tag({:action => 'save_path', :id => @track}, :multipart => true) %>
+<%= form_tag({action: 'save_path', id: @track}, multipart: true) %>
   <p>
     <%= file_field :path, :filename %>
   </p>
   <p>
-    <%= submit_tag 'Upload' %> or <%= link_to_remote 'Cancel', :url => {:action => 'cancel_upload', :id => @track} %>
+    <%= submit_tag 'Upload' %> or <%= link_to_remote 'Cancel', url: {action: 'cancel_upload', id: @track} %>
   </p>
 </form>
 </div>

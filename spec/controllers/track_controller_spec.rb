@@ -71,7 +71,7 @@ describe TrackController do
   describe "POST #create" do
     before do
       @valid_attributes = Factory.attributes_for(:track)
-      @invalid_attributes = Factory.attributes_for(:track, :name => '')
+      @invalid_attributes = Factory.attributes_for(:track, name: '')
       login_user
       Track.stub(:new).and_return(@track)
       Track.stub(:find).and_return(@track)
@@ -100,13 +100,13 @@ describe TrackController do
 
   describe "GET #edit" do
     before do
-      @track = Factory.build(:track, :id => '1', :desc_overview => '', :desc_full => '', :desc_where => '', :desc_note => '')
+      @track = Factory.build(:track, id: '1', desc_overview: '', desc_full: '', desc_where: '', desc_note: '')
       Track.stub(:find).and_return(@track)
       login_user
     end
 
     def do_get
-      get :edit, :id => "1"
+      get :edit, id: "1"
     end
 
     it "is successful" do
@@ -132,7 +132,7 @@ describe TrackController do
 
   describe  "PUT #update" do
     before do
-      @track = Factory.build(:track, :id => '1', :desc_overview => '', :desc_full => '', :desc_where => '', :desc_note => '')
+      @track = Factory.build(:track, id: '1', desc_overview: '', desc_full: '', desc_where: '', desc_note: '')
       Track.stub(:find).and_return(@track)
       login_user
       controller.stub(:update_user_edit_stats).and_return(true)
@@ -140,12 +140,12 @@ describe TrackController do
 
     def put_with_successful_update
       @track.stub(:update_attributes).and_return(true)
-      post :update, :id => '1', :track => { :desc_overview => '', :desc_full => '', :desc_where => '', :desc_note => '' }
+      post :update, id: '1', :track => { desc_overview: '', desc_full: '', desc_where: '', desc_note: '' }
     end
 
     def put_with_failed_update
       @track.stub(:update_attributes).and_return(false)
-      post :update, :id => '1', :track => { :desc_overview => '', :desc_full => '', :desc_where => '', :desc_note => '' }
+      post :update, id: '1', :track => { desc_overview: '', desc_full: '', desc_where: '', desc_note: '' }
     end
 
     it "finds the track requested" do

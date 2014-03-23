@@ -1,7 +1,7 @@
 <h1>Admin: user (edit)</h1>
-<% form_tag :action => 'update', :id => @user do %>
+<% form_tag action: 'update', id: @user do %>
 
-<%= error_messages_for 'user', :header_tag => 'h4' %>
+<%= error_messages_for 'user', header_tag: 'h4' %>
 
 <div class="two_cols">
   <div class="col_one"><div class="edit">Screen name</div></div>
@@ -14,5 +14,5 @@
   <div class="col_two"><%= select 'user', 'privilege', ["admin", "viewer", "creator"] %></div>
 </div>
 
-  <p class="form_buttons"><%= submit_tag 'Save changes' %> or <%= link_to 'Cancel', :action => 'show', :id => @user %></p>
+  <p class="form_buttons"><%= submit_tag 'Save changes' %> or <%= link_to 'Cancel', action: 'show', id: @user %></p>
 <% end %>

@@ -6,7 +6,7 @@ describe TrackReportController do
     end
 
     def do_get
-      get :index, :year => '2013'
+      get :index, year: '2013'
     end
 
     it 'Should render the list template' do

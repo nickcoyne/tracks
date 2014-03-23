@@ -1,14 +1,14 @@
 class NationController < ApplicationController
 
-  before_filter :login_required, :only => [ :edit, :update, :edit_regions, :region_up, :region_down ]
+  before_filter :login_required, only: [ :edit, :update, :edit_regions, :region_up, :region_down ]
 
   def index
-    redirect_to :action => 'show', :id => Nation.first
+    redirect_to action: 'show', id: Nation.first
   end
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-  :redirect_to => { :action => :index }
+  verify method: :post, only: [ :destroy, :create, :update ],
+  redirect_to: { action: :index }
 
   def show
     @nation = Nation.find(params[:id])
@@ -25,9 +25,9 @@ class NationController < ApplicationController
     if @nation.update_attributes(params[:nation])
       update_user_edit_stats
       flash[:notice] = @nation.name + '  was successfully updated.'
-      redirect_to :action => 'show', :id => @nation
+      redirect_to action: 'show', id: @nation
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
@@ -46,6 +46,6 @@ class NationController < ApplicationController
       update_user_edit_stats
       flash[:notice] = "Region order for #{@nation.name} successfully updated."
     end
-    redirect_to :controller => 'index'
+    redirect_to controller: 'index'
   end
 end

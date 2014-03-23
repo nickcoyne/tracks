@@ -54,7 +54,7 @@
 </p>
 <% end %>
 
-<p><b>Last modified</b>: <%= render :partial => 'last_updated_by' %></p>
+<p><b>Last modified</b>: <%= render partial: 'last_updated_by' %></p>
 
 <p><b>Created by</b>: <%= User.find(@track.created_by).screen_name %></p>
 

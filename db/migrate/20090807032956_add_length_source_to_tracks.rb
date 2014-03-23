@@ -8,9 +8,9 @@ class AddLengthSourceToTracks < ActiveRecord::Migration
     add_column :tracks, :length_source, :string
     add_column :tracks, :length_adjust_percent, :integer, :default => 0
     change_column :tracks, :length, :decimal, :precision => 6, :scale => 3, :default => 0.0
-    
+
     Track.reset_column_information
-    
+
     a = Area.new(:name => "temp", :region_id => 1, :description => "temp")
     a.id = 99
     a.save!

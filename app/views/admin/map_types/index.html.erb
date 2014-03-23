@@ -10,12 +10,12 @@
   <tr>
     <td><%=h map_type.name %></td>
     <td><%=h map_type.google_map_type %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => map_type %></td>
-    <td><%= link_to 'Destroy', :id => map_type, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Edit', action: 'edit', id: map_type %></td>
+    <td><%= link_to 'Destroy', id: map_type, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <hr/>
 
-<p><%= link_to 'New', :action => 'new' %></p>
+<p><%= link_to 'New', action: 'new' %></p>

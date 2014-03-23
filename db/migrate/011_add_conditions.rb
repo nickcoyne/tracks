@@ -3,7 +3,7 @@ class AddConditions < ActiveRecord::Migration
     create_table :conditions do |t|
       t.string :name
     end
-    
+
     Condition.create :name => 'Single track'
     Condition.create :name => 'Double track'
     Condition.create :name => '4wd'

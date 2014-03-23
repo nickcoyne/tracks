@@ -1,6 +1,6 @@
 <h1>New region (edit)</h1>
 
-<% form_tag :action => 'create', :nation_id => params[:nation_id] do %>
-  <%= render :partial => 'form' %>
-  <p class="form_buttons"><%= submit_tag "Create" %> or <%= link_to 'Cancel', :controller => 'index' %></p>
+<% form_tag action: 'create', nation_id: params[:nation_id] do %>
+  <%= render partial: 'form' %>
+  <p class="form_buttons"><%= submit_tag "Create" %> or <%= link_to 'Cancel', controller: 'index' %></p>
 <% end %>

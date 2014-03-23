@@ -7,19 +7,19 @@ class Track < ActiveRecord::Base
   include Coords
 
   belongs_to :area
-  has_many :track_akas, :order => 'name'
+  has_many :track_akas, order: 'name'
   belongs_to :track_grade
   belongs_to :track_access
   belongs_to :condition
   has_many :track_connections
   has_many :track_reports
-  has_many :g_map_tracks, :order => 'sequence'
-  # has_many :medias, :conditions => ["ref_type = ? AND ref_id = ?", 'track', id]
+  has_many :g_map_tracks, order: 'sequence'
+  # has_many :medias, conditions: ["ref_type = ? AND ref_id = ?", 'track', id]
 
   before_validation       :fix_name
   validates_presence_of   :name
-  validates_format_of     :name, :with => /^[\w \-']+$/i, :message => 'can only contain letters and numbers (and spaces).'
-  validates_length_of     :name, :maximum => 40, :message => 'Track name too long, maximum is 40 characters.'
+  validates_format_of     :name, with: /^[\w \-']+$/i, message: 'can only contain letters and numbers (and spaces).'
+  validates_length_of     :name, maximum: 40, message: 'Track name too long, maximum is 40 characters.'
   validate                :name_is_unique_for_region
   validate                :overview_is_not_empty
 
@@ -29,7 +29,7 @@ class Track < ActiveRecord::Base
   Track::LENGTH_SOURCE_USER = 'user'
 
   def medias
-    Media.all(:conditions => ["ref_type = ? AND ref_id = ?", 'track', id])
+    Media.all(conditions: ["ref_type = ? AND ref_id = ?", 'track', id])
   end
 
   # Apply % adjustment for calculated lengths
@@ -39,13 +39,13 @@ class Track < ActiveRecord::Base
   end
 
   def self.find_recent(offset = RECENT_HISTORY_OFFSET)
-    previous_by_time = Track.all(:order => 'updated_at DESC', :conditions => ["updated_at > ?", offset])
-    previous_by_time.length > RECENT_TRACK_COUNT ? previous_by_time : Track.all(:limit => RECENT_TRACK_COUNT, :order => 'updated_at DESC')
+    previous_by_time = Track.all(order: 'updated_at DESC', conditions: ["updated_at > ?", offset])
+    previous_by_time.length > RECENT_TRACK_COUNT ? previous_by_time : Track.all(limit:  RECENT_TRACK_COUNT, order: 'updated_at DESC')
   end
 
   def self.find_recent_by_area(area_id)
-    previous_by_time = Track.all(:order => 'updated_at DESC', :conditions => ["area_id = ? AND updated_at > ?", area_id, RECENT_HISTORY_OFFSET])
-    previous_by_time.length > RECENT_TRACK_COUNT ? previous_by_time : Track.all(:limit => RECENT_TRACK_COUNT, :order => 'updated_at DESC', :conditions => ["area_id = ?", area_id])
+    previous_by_time = Track.all(order: 'updated_at DESC', conditions: ["area_id = ? AND updated_at > ?", area_id, RECENT_HISTORY_OFFSET])
+    previous_by_time.length > RECENT_TRACK_COUNT ? previous_by_time : Track.all(limit:  RECENT_TRACK_COUNT, order: 'updated_at DESC', conditions: ["area_id = ?", area_id])
   end
 
   def self.find_recent_by_region(region_id)
@@ -54,11 +54,11 @@ class Track < ActiveRecord::Base
       track_ids << a.tracks.collect(&:id)
     end
 
-    previous_by_time = Track.all(:order => 'updated_at DESC', :conditions => ["id in (?) AND updated_at > ?", track_ids.flatten, RECENT_HISTORY_OFFSET])
-    previous_by_time.length > RECENT_TRACK_COUNT ? previous_by_time : Track.all(:limit => RECENT_TRACK_COUNT, :order => 'updated_at DESC', :conditions => ["id in (?)", track_ids.flatten])
+    previous_by_time = Track.all(order: 'updated_at DESC', conditions: ["id in (?) AND updated_at > ?", track_ids.flatten, RECENT_HISTORY_OFFSET])
+    previous_by_time.length > RECENT_TRACK_COUNT ? previous_by_time : Track.all(limit:  RECENT_TRACK_COUNT, order: 'updated_at DESC', conditions: ["id in (?)", track_ids.flatten])
 
-    # previous_by_time = Track.all(:order => 'updated_at DESC', :conditions => ["area_id = ? AND updated_at > ?", area_id, RECENT_HISTORY_OFFSET])
-    # previous_by_time.length > RECENT_TRACK_COUNT ? previous_by_time : Track.all(:limit => RECENT_TRACK_COUNT, :order => 'updated_at DESC', :conditions => ["area_id = ?", area_id])
+    # previous_by_time = Track.all(order: 'updated_at DESC', conditions: ["area_id = ? AND updated_at > ?", area_id, RECENT_HISTORY_OFFSET])
+    # previous_by_time.length > RECENT_TRACK_COUNT ? previous_by_time : Track.all(limit:  RECENT_TRACK_COUNT, order: 'updated_at DESC', conditions: ["area_id = ?", area_id])
   end
 
   def file_path_exists?
@@ -112,7 +112,7 @@ class Track < ActiveRecord::Base
 
         # sub_name = name if sub_name.nil?
 
-        GMapTrack.new(:track_id => id, :points => result[:points], :levels => result[:levels], :num_levels => result[:numLevels], :zoom => result[:zoomFactor], :sequence => i, :name => sub_name).save!
+        GMapTrack.new(track_id: id, :points => result[:points], :levels => result[:levels], :num_levels => result[:numLevels], :zoom => result[:zoomFactor], :sequence => i, name: sub_name).save!
       end
     end
 
@@ -126,19 +126,19 @@ class Track < ActiveRecord::Base
   def get_connections
     connections = []
     track_connections.each do |c|
-      connections << [Track.find(c.connect_track_id, :select => "name").name, c.id, c.connect_track_id]
+      connections << [Track.find(c.connect_track_id, select: "name").name, c.id, c.connect_track_id]
     end
     connections.sort
   end
 
   def self.get_markers(area_id)
-    Track.all(:conditions => ["area_id = ? AND zoom != 0", area_id], :select => 'latitude, longitude, name, id').collect { |t| [t.latitude, t.longitude, t.name, t.id] }
+    Track.all(conditions: ["area_id = ? AND zoom != 0", area_id], select: 'latitude, longitude, name, id').collect { |t| [t.latitude, t.longitude, t.name, t.id] }
   end
 
   def self.length_summary(area_ids)
     summary = {}
     area_ids.each do |area_id|
-      Track.all(:conditions => ["area_id = ?", area_id], :select => 'condition_id, length').each do |track|
+      Track.all(conditions: ["area_id = ?", area_id], select: 'condition_id, length').each do |track|
         if track.length > 0 and track.condition_id != nil
           summary[track.condition_id] = summary.has_key?(track.condition_id) ? summary[track.condition_id] + track.adjusted_length : track.adjusted_length
         end
@@ -151,7 +151,7 @@ class Track < ActiveRecord::Base
     tweet format_for_twitter("New track #{name} added to #{area.name}, #{area.region.name}.")
   end
 
-  protected
+protected
 
   # Shoe-horn twitter message (some of), and track url
   def format_for_twitter(message)
@@ -169,9 +169,9 @@ class Track < ActiveRecord::Base
 
   def name_is_unique_for_region
     if id.nil?
-      existing = Track.all(:conditions => ["name = ? AND area_id in (?)", name, area.region.areas.collect(&:id)], :select => 'name').size
+      existing = Track.all(conditions: ["name = ? AND area_id in (?)", name, area.region.areas.collect(&:id)], select: 'name').size
     else
-      existing = Track.all(:conditions => ["id != ? AND name = ? AND area_id in (?)", id, name, area.region.areas.collect(&:id)], :select => 'name').size
+      existing = Track.all(conditions: ["id != ? AND name = ? AND area_id in (?)", id, name, area.region.areas.collect(&:id)], select: 'name').size
     end
     errors.add(:name, "must be unique within #{area.region.name}") if existing != 0
   end

@@ -14,9 +14,9 @@
   <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
     <% if !params[:view] %><td nowrap="true"><%= problem.votes.length %>
       <%- if logged_in? -%>
-      <%- vote = Vote.find(:first, :conditions => ["feature_id = ? AND user_id = ?", problem.id, current_user.id]) -%>
-      <%- if current_user.has_more_votes? %><%= link_to_remote image_tag(image_path("add.png"), :mouseover => image_path("add_over.png"), :alt => "", :size => "10x10", :title => "Add vote"), :url => {:controller => 'features', :action => 'create_vote', :feature => problem, :user => current_user} %><% end %>
-      <%- if Vote.total_by(problem, current_user).length > 0 %><%= link_to_remote image_tag(image_path("del.png"), :mouseover => image_path("del_over.png"), :alt => "", :size => "10x10", :title => "Delete vote"), :url => {:controller => 'features', :action => 'delete_vote', :id => vote}, :method => :get %><% end -%>
+      <%- vote = Vote.find(:first, conditions: ["feature_id = ? AND user_id = ?", problem.id, current_user.id]) -%>
+      <%- if current_user.has_more_votes? %><%= link_to_remote image_tag(image_path("add.png"), mouseover: image_path("add_over.png"), alt: "", size: "10x10", title: "Add vote"), url: {controller: 'features', action: 'create_vote', feature: problem, :user => current_user} %><% end %>
+      <%- if Vote.total_by(problem, current_user).length > 0 %><%= link_to_remote image_tag(image_path("del.png"), mouseover: image_path("del_over.png"), alt: "", size: "10x10", title: "Delete vote"), url: {controller: 'features', action: 'delete_vote', id: vote}, method: :get %><% end -%>
       <%- end %>
     </td><% end %>
     <td><%= problem.humanized_id %></td>

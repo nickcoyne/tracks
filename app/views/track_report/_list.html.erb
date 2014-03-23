@@ -1,14 +1,14 @@
 <div id='track_report_new'>
-<%= render :partial => 'track_report/new'%>
+<%= render partial: 'track_report/new'%>
 </div>
 
 <% track_reports = TrackReport.find_recent_by_track(@track.id) %>
 <% for @track_report in track_reports do %>
 
-<%= render :partial => 'track_report/show' %>
+<%= render partial: 'track_report/show' %>
 
 <% end %>
 
 <% if track_reports.length > 0 %>
-<p class='edit'><%= link_to 'View all reports', { :controller => 'track_report', :action => 'list', :track_id => @track.id, :year => Time.now.strftime('%Y') } %></p>
+<p class='edit'><%= link_to 'View all reports', { controller: 'track_report', action: 'list', track_id: @track.id, year: Time.now.strftime('%Y') } %></p>
 <% end %>

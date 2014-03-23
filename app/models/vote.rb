@@ -5,6 +5,6 @@ class Vote < ActiveRecord::Base
   MAX_VOTES_PER_USER = 3
 
   def self.total_by(feature, user)
-    Vote.all(:conditions => ["user_id = ? AND feature_id = ?", user.id, feature.id])
+    Vote.all(conditions: ["user_id = ? AND feature_id = ?", user.id, feature.id])
   end
 end

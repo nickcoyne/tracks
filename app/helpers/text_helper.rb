@@ -14,15 +14,15 @@ module TextHelper
         begin
           case key
           when 'track'
-            name = Track.find(value, :select => 'name').name
+            name = Track.find(value, select: 'name').name
           when 'area'
-            name = Area.find(value, :select => 'name').name
+            name = Area.find(value, select: 'name').name
           when 'region'
-            name = Region.find(value, :select => 'name').name
+            name = Region.find(value, select: 'name').name
           when 'nation'
-            name = Nation.find(value, :select => 'name').name
+            name = Nation.find(value, select: 'name').name
           when 'feature'
-            name = Feature.find(value, :select => 'title').title
+            name = Feature.find(value, select: 'title').title
           end
         rescue ActiveRecord::RecordNotFound
         end
@@ -91,13 +91,13 @@ module TextHelper
           when 'track'
             track = Track.find(value)
             name = track.area.region.name + ':' + (track.name.to_i == 0 ? '' : '#') + track.name
-            # name = Track.find(value, :select => 'name').name
+            # name = Track.find(value, select: 'name').name
           when 'area'
-            name = Area.find(value, :select => 'name').name
+            name = Area.find(value, select: 'name').name
           when 'region'
-            name = Region.find(value, :select => 'name').name
+            name = Region.find(value, select: 'name').name
           when 'nation'
-            name = Nation.find(value, :select => 'name').name
+            name = Nation.find(value, select: 'name').name
           end
         rescue ActiveRecord::RecordNotFound
         end
@@ -126,17 +126,17 @@ module TextHelper
             if name =~ /:/
               region_name, track_name = name.split(':')
               track_name = track_name[1..-1] if track_name[0,1] == '#'
-              region = Region.find(:first, :conditions => ["name = ?", region_name])
-              id = Track.find(:first, :conditions => ["name = ? AND area_id in (?)", track_name, region.areas.collect(&:id)], :select => 'id')
+              region = Region.find(:first, conditions: ["name = ?", region_name])
+              id = Track.find(:first, conditions: ["name = ? AND area_id in (?)", track_name, region.areas.collect(&:id)], select: 'id')
             else
-              id = Track.find(:first, :conditions => ["name = ?", name], :select => 'id')
+              id = Track.find(:first, conditions: ["name = ?", name], select: 'id')
             end
           when 'area'
-            id = Area.find(:first, :conditions => ["name = ?", name], :select => 'id')
+            id = Area.find(:first, conditions: ["name = ?", name], select: 'id')
           when 'region'
-            id = Region.find(:first, :conditions => ["name = ?", name], :select => 'id')
+            id = Region.find(:first, conditions: ["name = ?", name], select: 'id')
           when 'nation'
-            id = Nation.find(:first, :conditions => ["name = ?", name], :select => 'id')
+            id = Nation.find(:first, conditions: ["name = ?", name], select: 'id')
           end
         rescue ActiveRecord::RecordNotFound
         end

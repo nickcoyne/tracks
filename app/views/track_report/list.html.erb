@@ -6,7 +6,7 @@
     <th>Date</th>
     <th>Report</th>
   </tr>
-  
+
 <% for track_report in @track_reports %>
   <tr>
     <td nowrap><%= track_report.updated_at.to_s(:concise) %></td>
@@ -24,8 +24,8 @@
 <hr/>
 
 <p>
-<% if params[:year].to_i > @oldest_report.updated_at.year %><%= link_to 'Older', { :controller => 'track_report', :action => 'list', :track_id => params[:track_id], :year => params[:year].to_i - 1 } %> |<% end %>
-<% if params[:year] != Time.now.strftime('%Y') %><%= link_to 'Current', { :controller => 'track_report', :action => 'list', :track_id => params[:track_id], :year => Time.now.strftime('%Y') } %> |<% end %>
-<% if params[:year] < Time.now.strftime('%Y') %><%= link_to 'Newer', { :controller => 'track_report', :action => 'list', :track_id => params[:track_id], :year => params[:year].to_i + 1 } %> |<% end %>
-<%= link_to 'Back to ' + @oldest_report.track.name, :controller => 'track', :action => 'show', :id => params[:track_id] %>
+<% if params[:year].to_i > @oldest_report.updated_at.year %><%= link_to 'Older', { controller: 'track_report', action: 'list', track_id: params[:track_id], year: params[:year].to_i - 1 } %> |<% end %>
+<% if params[:year] != Time.now.strftime('%Y') %><%= link_to 'Current', { controller: 'track_report', action: 'list', track_id: params[:track_id], year: Time.now.strftime('%Y') } %> |<% end %>
+<% if params[:year] < Time.now.strftime('%Y') %><%= link_to 'Newer', { controller: 'track_report', action: 'list', track_id: params[:track_id], year: params[:year].to_i + 1 } %> |<% end %>
+<%= link_to 'Back to ' + @oldest_report.track.name, controller: 'track', action: 'show', id: params[:track_id] %>
 </p>

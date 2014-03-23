@@ -43,6 +43,6 @@ class FeatureCommentsController < ApplicationController
     @feature_comment = FeatureComment.find(params[:id])
     @feature_comment.destroy
 
-    redirect_to :controller => 'features', :action => 'show', :id => @feature_comment.feature
+    redirect_to controller: 'features', action: 'show', id: @feature_comment.feature
   end
 end

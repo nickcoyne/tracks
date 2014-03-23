@@ -5,6 +5,6 @@
 <% if @existing_connections.nil? && params[:action] != /new|create/ %>
 <p style="margin:8px 9px;"><em>Note: add connecting tracks after you have saved your new track.</em></p>
 <% else %>
-<%= render :partial => "/track_connection/show" %>
+<%= render partial: "/track_connection/show" %>
 <% end %>
 </div>

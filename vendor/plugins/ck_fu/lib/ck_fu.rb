@@ -14,12 +14,12 @@ module Umlatte
       text
     end
   end
-  
+
   def deployed_revision
     file = RAILS_ROOT + '/REVISION'
-    File.exists?(file) ? File.open(file).read.strip : nil      
+    File.exists?(file) ? File.open(file).read.strip : nil
   end
-  
+
   def deployed_date
     file = RAILS_ROOT + '/DATE'
     File.exists?(file) ? File.open(file).read.strip : nil
@@ -30,7 +30,7 @@ module Rails
   def self.environment
     ENV['RAILS_ENV'].to_s.downcase
   end
-  
+
   def self.production?
     environment == 'production'
   end

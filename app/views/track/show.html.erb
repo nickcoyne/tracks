@@ -2,7 +2,7 @@
 <% if flash[:notice] %><p class="notice"><%= flash[:notice] %></p><% end -%>
 
 <div class="left"><p>Name</p></div>
-<div class="print_link"><p><%= link_to image_tag('printer_15.png', :size => "15x15"), {:action => :print, :id => @track}, { :target => '_blank', :title => 'Simple printer-friendly version of this page' } %></p></div>
+<div class="print_link"><p><%= link_to image_tag('printer_15.png', size: "15x15"), {action: :print, id: @track}, { target: '_blank', title: 'Simple printer-friendly version of this page' } %></p></div>
 <div class="right"><p><%= @track.name %>
 <%= '<span style="color:#777777;">(' + @track_akas.collect(&:name).sort.join(', ') + ')</span>' if @track_akas.size > 0 %>
 </p></div>
@@ -65,7 +65,7 @@
 <% end %>
 
 <div class="left"><p>Last modified</p></div>
-<div class="right"><p id="last_updated_by"><%= render :partial => 'last_updated_by' %></p></div>
+<div class="right"><p id="last_updated_by"><%= render partial: 'last_updated_by' %></p></div>
 
 <div class="left"><p>Created by</p></div>
 <div class="right"><p><%= User.find(@track.created_by).screen_name %></p></div>
@@ -81,10 +81,10 @@
 <p>Download GPS path: <%= link_to 'gpx', "/paths/#{@track.filename}.gpx" if @track.gpx_file_exists? %> <%= link_to 'kml', "/paths/#{@track.filename}.kml" if @track.kml_file_exists? %></p>
 <% end %>
 
-<% if creator? %><div id="upload_path_file"><%= render :partial => 'upload_link' %></div><% end %>
+<% if creator? %><div id="upload_path_file"><%= render partial: 'upload_link' %></div><% end %>
 <% end %>
 
 <hr/>
 
-<p class="edit"><%= link_to 'Edit', :action => 'edit', :id => @track %>
-<% if ! logged_in? %> (requires sign-in)<% end %> | <%= link_to 'Print', {:action => :print, :id => @track}, { :target => '_blank', :title => 'Simple printer-friendly version of this page' } %></p>
+<p class="edit"><%= link_to 'Edit', action: 'edit', id: @track %>
+<% if ! logged_in? %> (requires sign-in)<% end %> | <%= link_to 'Print', {action: :print, id: @track}, { target: '_blank', title: 'Simple printer-friendly version of this page' } %></p>

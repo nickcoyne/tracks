@@ -1,14 +1,14 @@
 class AreaController < ApplicationController
 
-  before_filter :login_required, :only => [ :edit, :update, :new ]
+  before_filter :login_required, only: [ :edit, :update, :new ]
 
   def index
-    redirect_to :action => 'show', :id => Area.first
+    redirect_to action: 'show', id: Area.first
   end
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :index }
+  verify method: :post, only: [ :destroy, :create, :update ],
+         redirect_to: { action: :index }
 
   def show
     @area = Area.find(params[:id])
@@ -27,9 +27,9 @@ class AreaController < ApplicationController
       update_user_edit_stats
       @area.tweet_new
       flash[:notice] = @area.name + ' was successfully created.'
-      redirect_to :controller => 'area', :action => 'show', :id => @area
+      redirect_to controller: 'area', action: 'show', id: @area
     else
-      render :action => 'new'
+      render action: 'new'
     end
   end
 
@@ -44,14 +44,14 @@ class AreaController < ApplicationController
     if @area.update_attributes(params[:area])
       update_user_edit_stats
       flash[:notice] = @area.name + ' was successfully updated.'
-      redirect_to :action => 'show', :id => @area
+      redirect_to action: 'show', id: @area
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
   def destroy
     Area.find(params[:id]).destroy
-    redirect_to :action => 'list'
+    redirect_to action: 'list'
   end
 end

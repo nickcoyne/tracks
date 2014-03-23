@@ -1,10 +1,10 @@
 class RainReadingsController < ApplicationController
 
-  before_filter :login_required, :only => [ :edit, :update, :new ]
+  before_filter :login_required, only: [ :edit, :update, :new ]
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :index }
+  verify method: :post, only: [ :destroy, :create, :update ],
+         redirect_to: { action: :index }
 
   def edit
     @rain_reading = RainReading.find(params[:id])
@@ -13,7 +13,7 @@ class RainReadingsController < ApplicationController
   def update_rain
     @rain_reading = RainReading.find(params[:id])
     if !@rain_reading.update_attributes(params[:rain_reading])
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 

@@ -60,7 +60,7 @@ describe AreaController do
   describe "POST #create" do
     before do
       @valid_attributes = Factory.attributes_for(:area)
-      @invalid_attributes = Factory.attributes_for(:area, :name => '')
+      @invalid_attributes = Factory.attributes_for(:area, name: '')
       login_user
       Area.stub(:new).and_return(@area)
       Area.stub(:find).and_return(@area)
@@ -89,13 +89,13 @@ describe AreaController do
 
   describe "GET #edit" do
     before do
-      @area = Factory.build(:area, :id => '1')
+      @area = Factory.build(:area, id: '1')
       Area.stub(:find).and_return(@area)
       login_user
     end
 
     def do_get
-      get :edit, :id => "1"
+      get :edit, id: "1"
     end
 
     it "is successful" do
@@ -121,7 +121,7 @@ describe AreaController do
 
   describe  "PUT #update" do
     before do
-      @area = Factory.build(:area, :id => '1', :description => '')
+      @area = Factory.build(:area, id: '1', description: '')
       Area.stub(:find).and_return(@area)
       login_user
       controller.stub(:update_user_edit_stats).and_return(true)
@@ -129,12 +129,12 @@ describe AreaController do
 
     def put_with_successful_update
       @area.stub(:update_attributes).and_return(true)
-      post :update, :id => '1', :area => { :description => '' }
+      post :update, id: '1', :area => { description: '' }
     end
 
     def put_with_failed_update
       @area.stub(:update_attributes).and_return(false)
-      post :update, :id => '1', :area => { :description => '' }
+      post :update, id: '1', :area => { description: '' }
     end
 
     it "finds the area requested" do

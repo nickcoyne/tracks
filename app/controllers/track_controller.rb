@@ -1,18 +1,18 @@
 class TrackController < ApplicationController
 
-  before_filter :login_required, :only => [ :edit, :update, :new, :create ]
+  before_filter :login_required, only: [ :edit, :update, :new, :create ]
 
   def index
-    redirect_to :action => 'show', :id => Track.first
+    redirect_to action: 'show', id: Track.first
   end
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-  :redirect_to => { :action => :index }
+  verify method: :post, only: [ :destroy, :create, :update ],
+  redirect_to: { action: :index }
 
   def show
     @track = Track.find(params[:id])
-    @track_akas = TrackAka.all(:conditions => ["track_id = ?", @track.id])
+    @track_akas = TrackAka.all(conditions: ["track_id = ?", @track.id])
     @existing_connections = @track.get_connections
     @ref_id = @track.id
   end
@@ -31,9 +31,9 @@ class TrackController < ApplicationController
       update_user_edit_stats
       @track.tweet_new
       flash[:notice] = @track.name + ' was successfully created.'
-      redirect_to :action => 'show', :id => @track
+      redirect_to action: 'show', id: @track
     else
-      render :action => 'new'
+      render action: 'new'
     end
   end
 
@@ -57,9 +57,9 @@ class TrackController < ApplicationController
     if @track.update_attributes(params[:track])
       update_user_edit_stats
       flash[:notice] = @track.name + ' was successfully updated.'
-      redirect_to :action => 'show', :id => @track
+      redirect_to action: 'show', id: @track
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
@@ -86,7 +86,7 @@ class TrackController < ApplicationController
     rescue Errno::ENOENT
       flash[:notice] = 'Problem uploading file. Please check your file and try again.'
     end
-    redirect_to :action => 'show', :id => @track.id
+    redirect_to action: 'show', id: @track.id
   end
 
   def print
@@ -96,6 +96,6 @@ class TrackController < ApplicationController
 
   def destroy
     track = Track.find(params[:id]).destroy
-    redirect_to :controller => 'area', :action => 'show', :id => track.area_id
+    redirect_to controller: 'area', action: 'show', id: track.area_id
   end
 end

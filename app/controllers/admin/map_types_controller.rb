@@ -20,7 +20,7 @@ class Admin::MapTypesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @map_type }
+      format.xml  { render xml: @map_type }
     end
   end
 
@@ -38,10 +38,10 @@ class Admin::MapTypesController < ApplicationController
       if @map_type.save
         flash[:notice] = 'MapType was successfully created.'
         format.html { redirect_to(@map_type) }
-        format.xml  { render :xml => @map_type, :status => :created, :location => @map_type }
+        format.xml  { render xml: @map_type, status: :created, location: @map_type }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @map_type.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
+        format.xml  { render xml: @map_type.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,8 +57,8 @@ class Admin::MapTypesController < ApplicationController
         format.html { redirect_to(@map_type) }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @map_type.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.xml  { render xml: @map_type.errors, status: :unprocessable_entity }
       end
     end
   end

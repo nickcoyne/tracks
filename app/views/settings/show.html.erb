@@ -1,11 +1,11 @@
 <h1>Settings</h1>
 
 <div id="user_settings">
-  <%= render :partial => 'show_user_settings' %>
+  <%= render partial: 'show_user_settings' %>
 </div>
 
 <div id="preferences">
-  <%= render :partial => 'show_prefs' %>
+  <%= render partial: 'show_prefs' %>
 </div>
 
 <%= heading "Feature Votes" %>
@@ -28,7 +28,7 @@
 <% else %>
 None.<hr/>
 <% end %>
-<%= link_to 'View all features', :controller => 'features' %>
+<%= link_to 'View all features', controller: 'features' %>
 </div>
 
 

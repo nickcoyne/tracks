@@ -1,21 +1,21 @@
-<%= error_messages_for 'region', :header_tag => 'h4' %>
+<%= error_messages_for 'region', header_tag: 'h4' %>
 
 <p><label for="region_name">Name</label><br/>
 <%= text_field 'region', 'name'  %></p>
 
 <p><label for="region_nation_id">Nation</label><br/>
 <% if params[:action] == 'new' %>
-  <%= text_field 'track', 'nation_id', :value => @region.nation.name, :disabled => true %>
+  <%= text_field 'track', 'nation_id', value: @region.nation.name, disabled: true %>
 <% else %>
   <%= select 'region', 'nation_id', Nation.all.collect {|c| [c.name, c.id] } %>
 <% end %>
 </p>
 
 <p><label for="region_description">Description</label><br/>
-<%= text_area 'region', 'description', "cols" => 70, "rows" => 10 %></p>
+<%= text_area 'region', 'description', cols: 70, rows: 10 %></p>
 
 <p><label for="rain_readings">Rain readings</label><br/>
-<%= text_field 'region', 'rain_readings', "size" => 4 %> (days 0..21, use 0 for no rainfall graph)</p>
+<%= text_field 'region', 'rain_readings', size: 4 %> (days 0..21, use 0 for no rainfall graph)</p>
 
 <p><label>Map</label>
 <div id="map"></div></p>
@@ -31,6 +31,6 @@
 <span id="edit_region_info">Region shapes are displayed on the front page map.</span><p>
 
 <input id="points" name="coords" value="<%#= @region.coords %>" type="hidden">
-<%= hidden_field 'region', 'latitude', :id => "region_latitude" %>
-<%= hidden_field 'region', 'longitude', :id => "region_longitude" %>
-<%= hidden_field 'region', 'zoom', :id => "region_zoom" %>
+<%= hidden_field 'region', 'latitude', id: "region_latitude" %>
+<%= hidden_field 'region', 'longitude', id: "region_longitude" %>
+<%= hidden_field 'region', 'zoom', id: "region_zoom" %>

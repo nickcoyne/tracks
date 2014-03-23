@@ -2,8 +2,8 @@ class TrackAkaController < ApplicationController
   before_filter :login_required
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
+  verify method: :post, only: [ :destroy, :create, :update ],
+         redirect_to: { action: :list }
 
   def show
     @track_aka = TrackAka.find(params[:id])
@@ -21,9 +21,9 @@ class TrackAkaController < ApplicationController
       update_track # move to model?
       update_user_edit_stats
       flash[:notice] = 'Successfully added \'also known as\' ' + @track_aka.name + '.'
-      redirect_to :controller => 'track', :action => 'edit', :id => params[:track_id]
+      redirect_to controller: 'track', action: 'edit', id: params[:track_id]
     else
-      render :action => 'new'
+      render action: 'new'
     end
   end
 
@@ -37,9 +37,9 @@ class TrackAkaController < ApplicationController
       update_track # move to model?
       update_user_edit_stats
       flash[:notice] = @track_aka.name + ' \'also known as\' was successfully updated.'
-      redirect_to :controller => 'track', :action => 'edit', :id => @track_aka.track_id
+      redirect_to controller: 'track', action: 'edit', id: @track_aka.track_id
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
@@ -47,7 +47,7 @@ class TrackAkaController < ApplicationController
     update_track # move to model?
     update_user_edit_stats
     TrackAka.find(params[:id]).destroy
-    redirect_to :controller => 'track', :action => 'edit', :id => params[:track_id]
+    redirect_to controller: 'track', action: 'edit', id: params[:track_id]
   end
 
 private
