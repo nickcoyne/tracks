@@ -44,9 +44,10 @@ class TrackAkaController < ApplicationController
   end
 
   def destroy
+    @track_aka = TrackAka.find(params[:id])
     update_track # move to model?
     update_user_edit_stats
-    TrackAka.find(params[:id]).destroy
+    @track_aka.destroy
     redirect_to controller: 'track', action: 'edit', id: params[:track_id]
   end
 

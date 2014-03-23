@@ -22,6 +22,11 @@ Factory.define :track do |f|
   f.association :area
 end
 
+Factory.define :track_aka do |f|
+  f.sequence(:name) { |n| "Track#{n}" }
+  f.association :track
+end
+
 Factory.define :user do |f|
   f.sequence(:screen_name) { |n| "User#{n}" }
   f.login "Smith"
